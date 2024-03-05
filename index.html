@@ -1,86 +1,40 @@
+<!DOCTYPE html>
 <html>
-<head>
- <title>Flappy Bird</title>
- <style>
-  canvas {
-   background-image: url("download.png");
-   background-repeat: no-repeat;
-   background-size: cover;
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 500px;
-   height: 800px;
-  }
-  .bird {
-   position: absolute;
-   top: 400px;
-   left: 200px;
-   width: 50px;
-   height: 50px;
-   background-image: url("images.png");
-   background-repeat: no-repeat;
-   background-size: cover;
-  }
-  .pipe {
-   position: absolute;
-   top: 0px;
-   left: 600px;
-   width: 50px;
-   height: 800px;
-   background-image: url("pipe.png");
-   background-repeat: no-repeat;
-   background-size: cover;
-  }
- </style>
-</head>
-<body>
- <canvas id="canvas"></canvas>
- <div class="bird"></div>
- <div class="pipe"></div>
+    <head>
+        <meta charset="UTF-8">
+        <link href = "flappybird.png" rel="icon" type="image/gif">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flappy Bird</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="game-container">
+                <div id="backdrop">
+                    <button id="startgame">
+                        START
+                    </button> <!-- START GAME -->
+                    
+                    <p class="score">
+                        Score: 0
+                    </p> <!-- SCORE IN-GAME -->
+        
+                    <div id="restart-container">
+                        <p class="score" id="endscore">
+                            Score: 0
+                        </p>
+                        <button id="restartgame">
+                            RESTART
+                        </button>
+                    </div> <!-- GAME OVER RESTART -->
 
- <script>
-  const canvas = document.getElementById("canvas");
-  const ctx = canvas.getContext("2d");
-
-  const bird = document.querySelector(".bird");
-  const pipe = document.querySelector(".pipe");
-
-  let birdTop = 400;
-  let pipeLeft = 600;
-
-  let birdJumping = false;
-  let pipeVelocity = 2;
-
-  function draw() {
-   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-   if (birdJumping) {
-    birdTop -= 10;
-    birdJumping = false;
-   } else {
-    birdTop += 5;
-   }
-
-   pipeLeft -= pipeVelocity;
-
-   if (pipeLeft < -50) {
-    pipeLeft = 600;
-   }
-
-   bird.style.top = ${birdTop}px;
-   pipe.style.left = ${pipeLeft}px;
-
-   requestAnimationFrame(draw);
-  }
-
-  function jump() {
-   birdJumping = true;
-  }
-
-  document.addEventListener("click", jump);
-
-  draw();
- </script>
-</body>
+                    <div id="bird"></div> <!-- PLAYER -->
+                </div> <!-- GAME BACKGROUND SKY-->
+            
+            <div id="ground-moving">
+                <div id="ground"></div>
+            </div> <!-- GROUND -->
+        </div> <!-- GAME CONTAINER -->
+        
+    </body>
+    <script src="main.js"></script>
 </html>
